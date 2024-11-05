@@ -109,3 +109,31 @@ void timer_pwm_set_ccr(TIM_TypeDef * timer, char channel, float rapport) {
 		timer->CCR4 = (int) (timer->ARR*rapport);
 	}
 }
+
+void timer_iencoder_enable(
+	TIM_TypeDef * timer,
+  int encoder_mode,
+	int polarity,
+	int n_incr
+) {
+	// Set slave mode control register to specified encoder mode
+	timer->SMCR &= ~TIM_SMCR_SMS;
+	timer->SMCR |= encoder_mode;
+	
+	// Set polarity of inputs
+	timer->CCER &= ~TIM_CCER_CC1P;
+	timer->CCER |= polarity;
+
+	timer->ARR = n_incr - 1;
+	
+	// Active counter
+	timer->CR1 |= TIM_CR1_CEN;
+}
+
+void timer_iencoder_set_zero(TIM_TypeDef * timer) {
+	timer->CNT = 0;
+}
+
+int timer_iencoder_get(TIM_TypeDef * timer) {
+	return timer->CNT;
+}
