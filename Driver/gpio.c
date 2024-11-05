@@ -39,6 +39,37 @@ int gpio_read(GPIO_TypeDef* gpio, char pin) {
 	return gpio->IDR & (1<<pin);
 }
 
+void (*callback)();
+
+void gpio_set_interruption(GPIO_TypeDef* gpio, void (*callback)()) {
+	if (gpio == GPIOA) {
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+	} else if (gpio == GPIOB) {
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+		AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PB;
+	} else if (gpio == GPIOC) {
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+		AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PC;
+	} else if (gpio == GPIOD) {
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+		AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PD;
+	} else if (gpio == GPIOE) {
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+		AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PE;
+	} else if (gpio == GPIOF) {
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+		AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PF;
+	} else { // GPIOG
+		AFIO->EXTICR[0] &= ~(AFIO_EXTICR1_EXTI0);
+		AFIO->EXTICR[0] |= AFIO_EXTICR1_EXTI0_PG;
+	}
+	(void)callback;
+}
+
+void EXTI0_IRQHandler() {
+	callback();
+}
+
 void gpio_set(GPIO_TypeDef* gpio, char pin) {
 	gpio->ODR |= (1<<pin);
 }
