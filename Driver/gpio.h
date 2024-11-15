@@ -12,9 +12,10 @@
 #define AltOut_OD    0xe //1110
 
 void gpio_enable(GPIO_TypeDef* gpio);
-void gpio_init(GPIO_TypeDef* gpio, char pin, char conf);
+void gpio_conf(GPIO_TypeDef* gpio, char pin, char conf);
 int  gpio_read(GPIO_TypeDef* gpio, char pin);
-void gpio_set_interruption(GPIO_TypeDef* gpio, void (*callback)());
+void gpio_enable_interruptions();
+void gpio_conf_interruption(GPIO_TypeDef* gpio, char pin, char prio, void (*callback)());
 void gpio_set(GPIO_TypeDef* gpio, char pin);
 void gpio_reset(GPIO_TypeDef* gpio, char pin);
 void gpio_toggle(GPIO_TypeDef* gpio, char pin);
