@@ -4,7 +4,7 @@
 #include "stm32f10x.h"
 
 void timer_enable(TIM_TypeDef * timer);
-void timer_init(TIM_TypeDef * timer, unsigned short arr, unsigned short psc);
+void timer_conf(TIM_TypeDef * timer, unsigned short arr, unsigned short psc);
 
 #define timer_start(Timer) (Timer->CR1 |= TIM_CR1_CEN)
 #define timer_stop (Timer) (Timer->CR1 &= ~(TIM_CR1_CEN))
