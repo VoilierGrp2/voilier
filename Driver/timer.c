@@ -5,7 +5,6 @@ void timer_enable(TIM_TypeDef * timer) {
 	else if (timer == TIM2) RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
 	else if (timer == TIM3) RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
 	else if (timer == TIM4) RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
-	timer->CR1 |= TIM_CR1_CEN;
 }
 
 void timer_conf(TIM_TypeDef * timer, unsigned short arr, unsigned short psc) {
