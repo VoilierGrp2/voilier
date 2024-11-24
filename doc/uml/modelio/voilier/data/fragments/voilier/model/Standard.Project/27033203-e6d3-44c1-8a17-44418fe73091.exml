@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="voilier" version="4">
+  <OBJECT>
+    <ID name="voilier" mc="Standard.Project" uid="27033203-e6d3-44c1-8a17-44418fe73091"/>
+    <ATTRIBUTES>
+      <ATT name="ProjectContext"></ATT>
+      <ATT name="ProjectDescr"></ATT>
+      <ATT name="Name"><![CDATA[voilier]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="Model">
+        <COMPID name="voilier" mc="Standard.Package" uid="49c057b6-a882-40cd-990c-8cca9f42d831"/>
+      </COMP>
+      <COMP relation="DiagramRoot">
+        <COMPID name="voilier" mc="Infrastructure.DiagramSet" uid="7aba3bbf-62c8-46eb-bf2a-9ca901dd6c48"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

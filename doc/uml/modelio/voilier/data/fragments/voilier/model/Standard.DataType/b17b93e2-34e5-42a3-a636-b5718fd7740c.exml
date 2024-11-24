@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="uint8_t" version="4">
+  <OBJECT>
+    <ID name="uint8_t" mc="Standard.DataType" uid="b17b93e2-34e5-42a3-a636-b5718fd7740c"/>
+    <PID name="voilier" mc="Standard.Package" uid="49c057b6-a882-40cd-990c-8cca9f42d831"/>
+    <ATTRIBUTES>
+      <ATT name="IsElementary">true</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[uint8_t]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

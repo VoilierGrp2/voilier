@@ -4,3 +4,10 @@ DebugConfig/
 
 *.scvd
 *.uvguix*
+
+# Modelio folders
+doc/uml/modelio/*/.runtime/
+doc/uml/modelio/*/data/.config/
+doc/uml/modelio/*/data/fragments/ModelerModule/
+doc/uml/modelio/*/data/fragments/PredefinedTypes*/
+doc/uml/modelio/*/data/localmodel/
