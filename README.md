@@ -53,12 +53,12 @@ classDiagram
 
     class Battery{
         +init()
-        +get_level(): int
+        +get_level() int
     }
 
     class RealTimeClock{
         +init(I2C)
-        +get_time(): int
+        +get_time() int
     }
 
     class RemoteControl{

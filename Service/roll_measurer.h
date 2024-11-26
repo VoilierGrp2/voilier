@@ -18,8 +18,8 @@
 #define ADXL_DATAX0 0x32
 #define ADXL_DATAX1 0x33
 
-void imu_init(SPI_TypeDef * spi);
+void roll_measurer_init(SPI_TypeDef * spi);
 
-int imu_read_angle();
+int get_roll_angle();
 
 #endif
