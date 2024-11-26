@@ -18,8 +18,17 @@
 #define ADXL_DATAX0 0x32
 #define ADXL_DATAX1 0x33
 
+/**
+ * @brief 'constructor', initialise le service roll_measurer
+ * @param SPIO_TypeDef * spi : module spi utilisé par le service roll_measurer
+ */
 void roll_measurer_init(SPI_TypeDef * spi);
 
-int get_roll_angle();
+/**
+ * @brief récupère l'angle de roulie fournis par le service
+ * @pre le service roll_measurer doit avoir été initialisé avec la fonction @ref roll_measurer_init()
+ * @return un entier représentant l'angle en degrés
+ */
+uint16_t roll_measurer_get_angle();
 
 #endif

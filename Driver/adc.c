@@ -1,14 +1,11 @@
 #include "adc.h"
 #
 
-void adc_init() {
+void adc_init(ADC_TypeDef * adc) {
+	(void) adc;
 	RCC->CFGR = RCC_CFGR_ADCPRE_DIV6;
-}
-
-void adc_enable(int x) {
 	// TODO regarder les modes, demander pour CONT et DISCNUM
-	(void) x;
-	if (x == 1) {
+	if (adc == ADC1) {
 		ADC1->CR1 &= ~(ADC_CR1_DISCNUM);
 		RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 	}
@@ -18,8 +15,8 @@ void adc_enable(int x) {
 	}
 }
 
-int adc_get_value(int x) {
-	(void) x;
+int adc_get_value(ADC_TypeDef * adc) {
+	(void) adc;
 	// send trigger
 	// wait for EOC flag
 	// fetch and return value

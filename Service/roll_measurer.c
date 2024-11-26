@@ -51,7 +51,7 @@ void roll_measurer_init(SPI_TypeDef * spi) {
 	);
 }
 
-int get_roll_angle() {
+uint16_t roll_measurer_get_angle() {
 	char buffer[6];
 	adxl_multi_read(ADXL_DATAX0, buffer, 6);
 	char z0 = buffer[4];
@@ -62,7 +62,7 @@ int get_roll_angle() {
 	// Z ranges from 1728 at 0 degrees to 0 at 90 degrees
 	double normalized_value = (double)z / IMU_MAX_VALUE;
 	double angle_radians = acos(normalized_value);
-	int angle_degrees = (int)(angle_radians * 180 / PI);
+	uint16_t angle_degrees = (uint16_t)(angle_radians * 180 / PI);
 	
 	return angle_degrees;
 }

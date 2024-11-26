@@ -51,7 +51,7 @@ void (*exti4_callback)();
 void (*exti9_5_callback)();
 void (*exti15_10_callback)();
 
-void gpio_conf_interruption(GPIO_TypeDef* gpio, uint8_t pin, uint8_t prio, void (*callback)()) {
+void gpio_register_interruption(GPIO_TypeDef* gpio, uint8_t pin, uint8_t prio, void (*callback)()) {
 	uint8_t n;
 	uint8_t offset;
 	uint16_t exti_conf_value;

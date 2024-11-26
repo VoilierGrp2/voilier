@@ -1,6 +1,6 @@
 #include "timer.h"
 
-void timer_enable(TIM_TypeDef * timer) {
+void timer_init(TIM_TypeDef * timer) {
 	if (timer == TIM1) RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
 	else if (timer == TIM2) RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
 	else if (timer == TIM3) RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
@@ -17,7 +17,7 @@ void (*tim2_it_function)();
 void (*tim3_it_function)();
 void (*tim4_it_function)();
 
-void timer_active_it(TIM_TypeDef * timer, uint8_t prio, void (*it_function)()) {
+void timer_register_interruption(TIM_TypeDef * timer, uint8_t prio, void (*it_function)()) {
 	// activer "port" correspondant sur NVIC
 	
 	char vector;
@@ -65,7 +65,7 @@ void TIM4_IRQHandler() {
 	tim4_it_function();
 }
 
-void timer_pwm_enable(TIM_TypeDef * timer, uint8_t channel) {
+void timer_enable_pwm(TIM_TypeDef * timer, uint8_t channel) {
 	if (timer == TIM1) {
 		timer->BDTR |= TIM_BDTR_MOE;
 	}
@@ -110,7 +110,7 @@ void timer_pwm_set_ccr(TIM_TypeDef * timer, uint8_t channel, float rapport) {
 	}
 }
 
-void timer_iencoder_enable(TIM_TypeDef * timer, uint16_t encoder_mode, uint16_t polarity) {
+void timer_enable_iencoder(TIM_TypeDef * timer, uint16_t encoder_mode, uint16_t polarity) {
 	// Set slave mode control register to specified encoder mode
 	timer->SMCR &= ~TIM_SMCR_SMS;
 	timer->SMCR |= encoder_mode;
