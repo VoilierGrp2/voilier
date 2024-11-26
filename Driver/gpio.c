@@ -12,7 +12,7 @@ void gpio_enable(GPIO_TypeDef* gpio) {
 	RCC->APB2ENR |= (0x01 << offset);
 }
 
-void gpio_conf(GPIO_TypeDef* gpio, char pin, char conf) {
+void gpio_conf(GPIO_TypeDef* gpio, uint8_t pin, uint8_t conf) {
 	int offset;
 	gpio_enable(gpio);
 	if (conf == In_PullUp) {
@@ -35,7 +35,7 @@ void gpio_conf(GPIO_TypeDef* gpio, char pin, char conf) {
 	}
 }
 
-int gpio_read(GPIO_TypeDef* gpio, char pin) {
+uint16_t gpio_read(GPIO_TypeDef* gpio, uint8_t pin) {
 	return gpio->IDR & (1<<pin);
 }
 
@@ -51,7 +51,7 @@ void (*exti4_callback)();
 void (*exti9_5_callback)();
 void (*exti15_10_callback)();
 
-void gpio_conf_interruption(GPIO_TypeDef* gpio, char pin, char prio, void (*callback)()) {
+void gpio_conf_interruption(GPIO_TypeDef* gpio, uint8_t pin, uint8_t prio, void (*callback)()) {
 	uint8_t n;
 	uint8_t offset;
 	uint16_t exti_conf_value;
@@ -147,15 +147,15 @@ void EXTI15_10_IRQHandler() {
 	exti15_10_callback();
 }
 
-void gpio_set(GPIO_TypeDef* gpio, char pin) {
+void gpio_set(GPIO_TypeDef* gpio, uint8_t pin) {
 	gpio->ODR |= (1<<pin);
 }
 
-void gpio_reset(GPIO_TypeDef* gpio, char pin) {
+void gpio_reset(GPIO_TypeDef* gpio, uint8_t pin) {
 	gpio->ODR &= ~(1<<pin);
 }
 
-void gpio_toggle(GPIO_TypeDef* gpio, char pin) {
+void gpio_toggle(GPIO_TypeDef* gpio, uint8_t pin) {
 	if (gpio_read(gpio, pin)) {
 		gpio_reset(gpio, pin);
 	} else {

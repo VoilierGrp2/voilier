@@ -7,7 +7,7 @@ void timer_enable(TIM_TypeDef * timer) {
 	else if (timer == TIM4) RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
 }
 
-void timer_conf(TIM_TypeDef * timer, unsigned short arr, unsigned short psc) {
+void timer_conf(TIM_TypeDef * timer, uint16_t arr, uint16_t psc) {
 	timer->ARR = arr-1;
 	timer->PSC = psc-1;
 }
@@ -17,7 +17,7 @@ void (*tim2_it_function)();
 void (*tim3_it_function)();
 void (*tim4_it_function)();
 
-void timer_active_it(TIM_TypeDef * timer, char prio, void (*it_function)()) {
+void timer_active_it(TIM_TypeDef * timer, uint8_t prio, void (*it_function)()) {
 	// activer "port" correspondant sur NVIC
 	
 	char vector;
@@ -65,7 +65,7 @@ void TIM4_IRQHandler() {
 	tim4_it_function();
 }
 
-void timer_pwm_enable(TIM_TypeDef * timer, char channel) {
+void timer_pwm_enable(TIM_TypeDef * timer, uint8_t channel) {
 	if (timer == TIM1) {
 		timer->BDTR |= TIM_BDTR_MOE;
 	}
@@ -95,27 +95,22 @@ void timer_pwm_enable(TIM_TypeDef * timer, char channel) {
 	}
 }
 
-void timer_pwm_set_ccr(TIM_TypeDef * timer, char channel, float rapport) {
+void timer_pwm_set_ccr(TIM_TypeDef * timer, uint8_t channel, float rapport) {
 	if (channel == 1) {
-		timer->CCR1 = (int) (timer->ARR*rapport);
+		timer->CCR1 = (uint16_t) (timer->ARR*rapport);
 	}
 	else if (channel == 2) {
-		timer->CCR2 = (int) (timer->ARR*rapport);
+		timer->CCR2 = (uint16_t) (timer->ARR*rapport);
 	}
 	else if (channel == 3) {
-		timer->CCR3 = (int) (timer->ARR*rapport);
+		timer->CCR3 = (uint16_t) (timer->ARR*rapport);
 	}
 	else {
-		timer->CCR4 = (int) (timer->ARR*rapport);
+		timer->CCR4 = (uint16_t) (timer->ARR*rapport);
 	}
 }
 
-void timer_iencoder_enable(
-	TIM_TypeDef * timer,
-  int encoder_mode,
-	int polarity,
-	int n_incr
-) {
+void timer_iencoder_enable(TIM_TypeDef * timer, uint16_t encoder_mode, uint16_t polarity) {
 	// Set slave mode control register to specified encoder mode
 	timer->SMCR &= ~TIM_SMCR_SMS;
 	timer->SMCR |= encoder_mode;
@@ -123,17 +118,12 @@ void timer_iencoder_enable(
 	// Set polarity of inputs
 	timer->CCER &= ~TIM_CCER_CC1P;
 	timer->CCER |= polarity;
-
-	timer->ARR = n_incr - 1;
-	
-	// Active counter
-	timer->CR1 |= TIM_CR1_CEN;
 }
 
 void timer_iencoder_set_zero(TIM_TypeDef * timer) {
 	timer->CNT = 0;
 }
 
-int timer_iencoder_get(TIM_TypeDef * timer) {
+uint16_t timer_iencoder_get(TIM_TypeDef * timer) {
 	return timer->CNT;
 }

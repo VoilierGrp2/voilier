@@ -7,10 +7,10 @@
 TIM_TypeDef * sail_timer;
 char sail_channel;
 
-void sail_init(TIM_TypeDef * timer, char channel) {
+void sail_init(TIM_TypeDef * timer, uint8_t channel) {
 	sail_timer = timer;
 	sail_channel = channel;
-	timer_pwm_enable(timer, channel);
+	timer_enable_pwm(timer, channel);
 	timer_conf(timer, 320, 4500);
 }
 
