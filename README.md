@@ -85,7 +85,7 @@ classDiagram
         +pmw_set_ccr(channel, ratio)
         +enable_iencoder(mode, polarity, n_increments)
         +iencoder_set_zero()
-        +timer_iencoder_get() int
+        +iencoder_get() int
     }
 
     class GPIODriver{
