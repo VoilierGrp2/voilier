@@ -77,24 +77,26 @@ classDiagram
 
     class TimerDriver{
         +init(Timer)
-        +configure(arr, psc)
+        +conf(arr, psc)
         +start()
         +stop()
-        +activate_interrupt(priority, handler_function)
+        +register_interruption(priority, handler_function)
         +enable_pmw(channel)
         +pmw_set_ccr(channel, ratio)
         +enable_iencoder(mode, polarity, n_increments)
         +iencoder_set_zero()
+        +timer_iencoder_get() int
     }
 
     class GPIODriver{
         +init(GPIO)
-        +configure(pin, mode)
-        +read(pin)
+        +conf(pin, mode)
+        +read(pin) int
         +set(pin)
         +reset(pin)
         +toggle(pin)
-        +enable_interrupt()
+        +enable_interruptions()$
+        +register_interruption(pin, priority, handler_function)
     }
 
     class UARTDriver{
