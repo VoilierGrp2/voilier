@@ -7,7 +7,7 @@ void timer_enable(TIM_TypeDef * timer) {
 	else if (timer == TIM4) RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
 }
 
-void timer_init(TIM_TypeDef * timer, unsigned short arr, unsigned short psc) {
+void timer_conf(TIM_TypeDef * timer, unsigned short arr, unsigned short psc) {
 	timer->ARR = arr-1;
 	timer->PSC = psc-1;
 }
