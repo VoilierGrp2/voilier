@@ -13,45 +13,45 @@
 
 /**
  * @brief 'constructeur', initialise le gpio en lui donnant l'horloge
- * @param GPIO_TypeDef * gpio : gpio à initialiser
+ * @param GPIO_TypeDef * gpio : gpio ï¿½ initialiser
  */
-void gpio_init(GPIO_TypeDef* gpio);
+void gpio_enable(GPIO_TypeDef* gpio);
 
 /**
  * @brief configure le pin d'un gpio avec un mode
- * @param GPIO_TypeDef * gpio : le gpio à configurer
- * @param uint8_t pin : le pin à configurer
- * @param uint8_t mode : le mode d'entrée/sortie du pin
- * @pre gpio doit être initialisé avec la fonction @ref gpio_init()
+ * @param GPIO_TypeDef * gpio : le gpio ï¿½ configurer
+ * @param uint8_t pin : le pin ï¿½ configurer
+ * @param uint8_t mode : le mode d'entrï¿½e/sortie du pin
+ * @pre gpio doit ï¿½tre initialisï¿½ avec la fonction @ref gpio_init()
  */
 void gpio_conf(GPIO_TypeDef* gpio, uint8_t pin, uint8_t mode);
 
 /**
- * @brief récupère la valeur du gpio à un certain pin
- * @param GPIO_TypeDef * gpio : gpio à lire
+ * @brief rï¿½cupï¿½re la valeur du gpio ï¿½ un certain pin
+ * @param GPIO_TypeDef * gpio : gpio ï¿½ lire
  * @param uint8_t pin : pin sur laquelle on souhaite lire l'information
- * @return un entier avec le bit correspondant au pin définit à la valeur lu par la fonction
+ * @return un entier avec le bit correspondant au pin dï¿½finit ï¿½ la valeur lu par la fonction
  */
 uint16_t gpio_read(GPIO_TypeDef* gpio, uint8_t pin);
 
 /**
- * @brief met à 1 la pin sur un gpio
- * @param GPIO_TypeDef * gpio : gpio à écrire
- * @param uint8_t pin : pin sur laquelle écrire
+ * @brief met ï¿½ 1 la pin sur un gpio
+ * @param GPIO_TypeDef * gpio : gpio ï¿½ ï¿½crire
+ * @param uint8_t pin : pin sur laquelle ï¿½crire
  */
 void gpio_set(GPIO_TypeDef* gpio, uint8_t pin);
 
 /**
- * @brief met à 0 la pin sur un gpio
- * @param GPIO_TypeDef * gpio : gpio à écrire
- * @param uint8_t pin : pin sur laquelle écrire
+ * @brief met ï¿½ 0 la pin sur un gpio
+ * @param GPIO_TypeDef * gpio : gpio ï¿½ ï¿½crire
+ * @param uint8_t pin : pin sur laquelle ï¿½crire
  */
 void gpio_reset(GPIO_TypeDef* gpio, uint8_t pin);
 
 /**
- * @brief change la valeur courante d'un pin d'un gpio à son inverse
- * @param GPIO_TypeDef * gpio : gpio à écrire
- * @param uint8_t pin : pin sur laquelle écrire
+ * @brief change la valeur courante d'un pin d'un gpio ï¿½ son inverse
+ * @param GPIO_TypeDef * gpio : gpio ï¿½ ï¿½crire
+ * @param uint8_t pin : pin sur laquelle ï¿½crire
  */
 void gpio_toggle(GPIO_TypeDef* gpio, uint8_t pin);
 
@@ -68,10 +68,10 @@ void gpio_enable_interruptions();
  * @brief enregistre une interruption sur un pin
  * @param GPIO_TypeDef * gpio : gpio sur lequel enregistrer l'interruption
  * @param uint8_t pin : pin sur lequel enregistrer l'interruption
- * @param uint8_t priority : priorité avec laquelle enregistrer l'interruption (cf NVIC priorities)
- * @param void (*handler)() : fonction à appeler lors d'une interruption
+ * @param uint8_t priority : prioritï¿½ avec laquelle enregistrer l'interruption (cf NVIC priorities)
+ * @param void (*handler)() : fonction ï¿½ appeler lors d'une interruption
  * @pre activer le support des interruptions avec @ref gpio_enable_interruptions()
- * @pre activer le gpio en entrée avec @ref gpio_conf()
+ * @pre activer le gpio en entrï¿½e avec @ref gpio_conf()
  */
 void gpio_register_interruption(GPIO_TypeDef* gpio, uint8_t pin, uint8_t priority, void (*handler)());
 
