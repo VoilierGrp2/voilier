@@ -1,6 +1,6 @@
 #include "gpio.h"
 
-void gpio_enable(GPIO_TypeDef* gpio) {
+void gpio_init(GPIO_TypeDef* gpio) {
 	int offset;
 	if (gpio == GPIOA) offset = 2;
 	else if (gpio == GPIOB) offset = 3;
@@ -14,7 +14,6 @@ void gpio_enable(GPIO_TypeDef* gpio) {
 
 void gpio_conf(GPIO_TypeDef* gpio, uint8_t pin, uint8_t conf) {
 	int offset;
-	gpio_enable(gpio);
 	if (conf == In_PullUp) {
 		offset = pin;
 		gpio->ODR |= (1 << offset);

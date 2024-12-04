@@ -15,7 +15,7 @@
  * @brief 'constructeur', initialise le gpio en lui donnant l'horloge
  * @param GPIO_TypeDef * gpio : gpio � initialiser
  */
-void gpio_enable(GPIO_TypeDef* gpio);
+void gpio_init(GPIO_TypeDef* gpio);
 
 /**
  * @brief configure le pin d'un gpio avec un mode
