@@ -10,6 +10,7 @@
  * @param TIM_TypeDef * timer : timer utilisé par le service
  * @param utin8_t channel : channel du timer utilisé par le service
  * @pre timer est initialisé avec @ref timer_init() mais pas lancé, pas besoin de le configurer au préalable car il sera reconfiguré
+ * @post laisse à l'utilisateur le soin de lancer le timer
  */
 void sail_init(TIM_TypeDef * timer, uint8_t channel);
 

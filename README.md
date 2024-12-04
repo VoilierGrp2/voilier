@@ -47,12 +47,12 @@ classDiagram
     }
 
     class Wheel{
-        +init()
-        +set(direction, intensity)
+        +init(timer, channel, gpio, pin)
+        +set(control)
     }
 
     class Battery{
-        +init()
+        +init(adc)
         +get_level() int
     }
 
