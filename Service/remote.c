@@ -16,7 +16,7 @@ void remote_init(USART_TypeDef * USART) {
     selected_usart = USART;
     uart_init(USART2);
 	uart_config(USART2, 9600);
-    gpio_enable(GPIOA);
+    gpio_init(GPIOA);
 	gpio_conf(GPIOA, 2, AltOut_Ppull);
     uart_enable_interrupt(USART);
     uart_config_interrupt(USART, handler_function, 0);

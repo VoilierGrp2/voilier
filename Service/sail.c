@@ -8,10 +8,14 @@ TIM_TypeDef * sail_timer;
 char sail_channel;
 
 void sail_init(TIM_TypeDef * timer, uint8_t channel) {
+	timer_init(timer);
+	timer_conf(timer, 320, 4500);
+	timer_enable_pwm(timer, channel);
+	
 	sail_timer = timer;
 	sail_channel = channel;
-	timer_enable_pwm(timer, channel);
-	timer_conf(timer, 320, 4500);
+	
+	timer_start(timer);
 }
 
 void sail_set_angle(uint16_t sail_angle) {
