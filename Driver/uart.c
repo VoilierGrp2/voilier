@@ -1,4 +1,5 @@
 #include "stm32f10x.h"
+#include "uart.h"
 
 void uart_init(USART_TypeDef * USART){
 	switch ((int)USART) {
