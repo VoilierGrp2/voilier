@@ -6,16 +6,22 @@
 #include "wheel.h"
 
 // sail control
+// PHA -> PA8 (TIM1_CH1), PHB -> PA9 (TIM1_CH2), (peut changer en fonction du sens)
 #define WIND_VANE_TIMER TIM1
-#define WIND_VANE_GPIO GPIOA
-#define WIND_VANE_GPIO_PIN 4
+// IDX -> PC7 (peut changer en fonction du sens)
+#define WIND_VANE_GPIO GPIOC
+#define WIND_VANE_GPIO_PIN 7
+// TODO
 #define ROLL_MEASURER_SPI SPI1
-#define SAIL_TIMER TIM2
-#define SAIL_TIMER_CHANNEL 1
+// Servo PWM -> PB0 (TIM3_CH3)
+#define SAIL_TIMER TIM3
+#define SAIL_TIMER_CHANNEL 3
 // utilities
 #define REMOTE_USART USART1
-#define WHEEL_TIMER TIM3
+// Plateau PWM -> PA15 (TIM2_CH1)
+#define WHEEL_TIMER TIM2
 #define WHEEL_TIMER_CHANNEL 1
+// Plateau Dir. -> PB7
 #define WHEEL_GPIO GPIOB
 #define WHEEL_GPIO_PIN 7
 
