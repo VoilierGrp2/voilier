@@ -2,7 +2,7 @@
 #include "timer.h"
 
 #define MIN_RATIO 0.05
-#define MAX_RATIO 0.995
+#define MAX_RATIO 0.0995
 
 #define MIN_ANGLE STRAIGHT_SAIL
 #define MAX_ANGLE BLOCKING_SAIL
