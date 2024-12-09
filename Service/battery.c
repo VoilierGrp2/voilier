@@ -9,7 +9,7 @@ void battery_init(ADC_TypeDef * adc, int channel, GPIO_TypeDef * gpio, int pin) 
 	  selected_adc = adc;
     adc_init(adc);
     adc_conf(adc, 6, channel, SAMPLE_TIME_1_5);
-    gpio_enable(gpio);
+    gpio_init(gpio);
     gpio_conf(gpio, pin, AltOut_Ppull);
 }
 
