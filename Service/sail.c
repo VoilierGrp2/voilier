@@ -35,8 +35,10 @@ float angle_to_pwm(int angle) {
     return pwm_percentage;
 }
 
+float current_ratio;
+
 void sail_set_angle(uint16_t sail_angle) {
-	float final_ratio = (float) sail_angle / 360;
-	final_ratio = final_ratio *(MAX_RATIO - MIN_RATIO) + MIN_RATIO;
-	timer_pwm_set_ccr(sail_timer, sail_channel, final_ratio);
+	float pwm_ratio = angle_to_pwm(sail_angle);
+	current_ratio = pwm_ratio;
+	timer_pwm_set_ccr(sail_timer, sail_channel, pwm_ratio);
 }
