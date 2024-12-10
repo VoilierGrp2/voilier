@@ -1,6 +1,9 @@
 #include "sail.h"
 #include "timer.h"
 
+#define SAIL_TIMER_ARR 320
+#define SAIL_TIMER_PSC 4500
+
 #define MIN_RATIO 0.05
 #define MAX_RATIO 0.0995
 
@@ -8,12 +11,13 @@
 #define MAX_ANGLE BLOCKING_SAIL
 
 TIM_TypeDef * sail_timer;
-char sail_channel;
+uint8_t sail_channel;
 
 void sail_init(TIM_TypeDef * timer, uint8_t channel) {
 	timer_init(timer);
-	timer_conf(timer, 320, 4500);
+	timer_conf(timer, SAIL_TIMER_ARR, SAIL_TIMER_PSC);
 	timer_enable_pwm(timer, channel);
+	timer_pwm_set_ccr(timer, channel, MIN_RATIO);
 	
 	sail_timer = timer;
 	sail_channel = channel;
@@ -35,10 +39,7 @@ float angle_to_pwm(int angle) {
     return pwm_percentage;
 }
 
-float current_ratio;
-
 void sail_set_angle(uint16_t sail_angle) {
 	float pwm_ratio = angle_to_pwm(sail_angle);
-	current_ratio = pwm_ratio;
 	timer_pwm_set_ccr(sail_timer, sail_channel, pwm_ratio);
 }
