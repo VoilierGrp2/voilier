@@ -1,4 +1,5 @@
 #include "stm32f10x.h"
+#include "gpio.h"
 #include "wind_vane.h"
 #include "roll_measurer.h"
 #include "sail.h"
@@ -16,11 +17,15 @@
 // Servo PWM -> PB0 (TIM3_CH3)
 #define SAIL_TIMER TIM3
 #define SAIL_TIMER_CHANNEL 3
+#define SAIL_PWM_OUTPUT_GPIO GPIOB
+#define SAIL_PWM_OUTPUT_PIN 0
 // utilities
 #define REMOTE_USART USART1
 // Plateau PWM -> PA15 (TIM2_CH1)
 #define WHEEL_TIMER TIM2
 #define WHEEL_TIMER_CHANNEL 1
+#define WHEEL_PWM_OUTPUT_GPIO GPIOA
+#define WHEEL_PWM_OUTPUT_PIN 15
 // Plateau Dir. -> PB7
 #define WHEEL_GPIO GPIOB
 #define WHEEL_GPIO_PIN 7
@@ -38,6 +43,8 @@ int main ( void )
 	// init roll measurer service
 	roll_measurer_init(ROLL_MEASURER_SPI);
 	// init sail service
+	gpio_init(SAIL_PWM_OUTPUT_GPIO);
+	gpio_conf(SAIL_PWM_OUTPUT_GPIO, SAIL_PWM_OUTPUT_PIN, AltOut_Ppull);
 	sail_init(SAIL_TIMER, SAIL_TIMER_CHANNEL);
 	
 	// init battery service
@@ -45,6 +52,8 @@ int main ( void )
 	// init remote service
 	remote_init(REMOTE_USART);
 	// init wheel service
+	gpio_init(WHEEL_PWM_OUTPUT_GPIO);
+	gpio_conf(WHEEL_PWM_OUTPUT_GPIO, WHEEL_PWM_OUTPUT_PIN, AltOut_Ppull);
 	wheel_init(WHEEL_TIMER, WHEEL_TIMER_CHANNEL, WHEEL_GPIO, WHEEL_GPIO_PIN);
 	
 	while (1)
