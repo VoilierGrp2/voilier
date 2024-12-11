@@ -4,15 +4,13 @@
 
 /**
  * @brief 'constructor', initialise le service wheel
- * @param TIM_TypeDef * timer : timer to use as pwm for the wheel control
- * @param GPIO_TypeDef * gpio : gpio to use as output for the direction
- * @pre both timer and gpio are enable (clocked)
- * @post laisse à l'utilisateur le soin de lancer le timer
+ * @param TIM_TypeDef * timer : timer à utiliser comme pwm pour le controle de la roue
+ * @param GPIO_TypeDef * gpio : gpio à utiliser comme sortie pour le bit de direction
  */
 void wheel_init(TIM_TypeDef * timer, uint8_t channel, GPIO_TypeDef * gpio, uint8_t pin);
 
 /**
- * @brief control the wheel to go a certain way at a certain intensity
+ * @brief controle la roue pour aller dans un certaine direction à un certain endroit
  * @param int8_t control : entier de controle, le signe controle le sens
  *   et la valeur représente le pourcentage d'intensité (entre 0% et 100%)
  */

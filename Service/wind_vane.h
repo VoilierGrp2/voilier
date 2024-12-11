@@ -8,9 +8,6 @@
  * @param TIM_TypeDef * timer : timer alloué au service wind_vane
  * @param GPIO_TypeDef * gpio : gpio alloué au service wind_vane
  * @param uint8_t pin : pin du gpio a utiliser par le service
- * @pre timer doit avoir été initialisé à l'aide de @ref timer_init()
- * @pre gpio doit avoir été initialisé à l'aide de @ref gpio_init()
- * @post laisse à l'utilisateur le soin de lancer le timer
  */
 void wind_vane_init(TIM_TypeDef * timer, GPIO_TypeDef * gpio, uint8_t pin);
 
