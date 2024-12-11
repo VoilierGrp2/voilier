@@ -29,11 +29,15 @@ void wheel_init(TIM_TypeDef * timer, uint8_t channel, GPIO_TypeDef * gpio, uint8
 	timer_start(timer);
 }
 
+float current_ratio;
+
 void wheel_control(int8_t control) {
 	if (control < 0) {
 		gpio_set(wheel_gpio, wheel_gpio_pin);
+		control = -control;
 	} else {
 		gpio_reset(wheel_gpio, wheel_gpio_pin);
 	}
+	current_ratio = control / 100.0f;
 	timer_pwm_set_ccr(wheel_timer, wheel_pwm_channel, control / 100.0f);
 }

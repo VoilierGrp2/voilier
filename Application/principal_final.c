@@ -21,11 +21,11 @@
 #define SAIL_PWM_OUTPUT_PIN 0
 // utilities
 #define REMOTE_USART USART1
-// Plateau PWM -> PA15 (TIM2_CH1)
+// Plateau PWM -> PA1 (TIM2_CH2)
 #define WHEEL_TIMER TIM2
-#define WHEEL_TIMER_CHANNEL 1
+#define WHEEL_TIMER_CHANNEL 2
 #define WHEEL_PWM_OUTPUT_GPIO GPIOA
-#define WHEEL_PWM_OUTPUT_PIN 15
+#define WHEEL_PWM_OUTPUT_PIN 1
 // Plateau Dir. -> PB7
 #define WHEEL_GPIO GPIOB
 #define WHEEL_GPIO_PIN 7
@@ -56,6 +56,9 @@ int main ( void )
 	gpio_conf(WHEEL_PWM_OUTPUT_GPIO, WHEEL_PWM_OUTPUT_PIN, AltOut_Ppull);
 	wheel_init(WHEEL_TIMER, WHEEL_TIMER_CHANNEL, WHEEL_GPIO, WHEEL_GPIO_PIN);
 	
+	// wheel control
+	remote_set_input_handler(handle_remote_input);
+	
 	while (1)
 	{
 		// auto sail
@@ -66,8 +69,6 @@ int main ( void )
 			uint16_t wind_vane_angle = wind_vane_get_angle();
 			sail_set_angle(wind_vane_angle);
 		}
-		// wheel remote control
-		remote_set_input_handler(handle_remote_input);
 		// clock timestampt
 		// battery notification
 	}
